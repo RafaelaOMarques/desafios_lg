@@ -7,16 +7,24 @@ function adicionar() {
     let quantidade = document.getElementById('quantidade').value;
     let carrinho = document.getElementById('lista-produtos');
     let valorTotal = document.getElementById('valor-total');
+    let msgError = document.getElementById('qtd-error');
 
     let preco = valorProduto * quantidade;
 
-    carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
+    if(quantidade > 0) {
+        msgError.textContent = ""
+        carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
                             <span class="texto-azul">${quantidade}</span> ${nomeProduto} <span class="texto-azul">R$ ${preco}</span>
                         </section>`
-    document.getElementById('quantidade').value = 0;
-    totalCarrinho = totalCarrinho + preco;
+        document.getElementById('quantidade').value = 0;
+        totalCarrinho = totalCarrinho + preco;
 
-    valorTotal.textContent = totalCarrinho;
+        valorTotal.textContent = totalCarrinho;
+    } else {
+        msgError.textContent = "Para adicionar informe uma quantidade"
+    }
+
+    
 }
 
 function limpar() {
